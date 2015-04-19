@@ -48,6 +48,20 @@
         </java>
     </target>
 
+    <target name="templator" depends="compile">
+        <java classname="teb.TemplatorTest" output="output/templator.html" logError="true" fork="true">
+            <jvmarg value="-server"/>
+            <sysproperty  key="out" value="${out}"/>
+            <sysproperty  key="wtimes" value="${wtimes}"/>
+            <sysproperty  key="ntimes" value="${ntimes}"/>
+            <sysproperty  key="buf" value="${buf}"/>
+            <classpath location="classes"/>
+            <classpath location="${lib}/javalite-common-1.4.10.jar"/>
+            <classpath location="${lib}/javalite-templator-1.12-SNAPSHOT.jar"/>
+        </java>
+    </target>
+
+
     <target name="stringbuilder" depends="compile">
         <java classname="teb.StringBuilder" output="output/stringbuilder.html" logError="true" fork="true">
             <jvmarg value="-server"/>
@@ -173,7 +187,7 @@
         </echo>
     </target>
 
-    <target name="selected" depends="header,stringbuilder,freemarker,velocity,beetl,rythm,jamon,httl,jmte"></target>
+    <target name="selected" depends="header,stringbuilder,freemarker,velocity,beetl,jamon,httl,jmte,templator"></target>
     <target name="all" depends="header,stringbuilder,freemarker,velocity,beetl,rythm,jamon,httl,jmte,jangod,thymeleaf"></target>
     
     <target name="help">
